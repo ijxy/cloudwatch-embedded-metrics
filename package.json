@@ -1,6 +1,6 @@
 {
   "name": "cloudwatch-embedded-metrics",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "CloudWatch embedded metric format (EMF) formatting utils",
   "homepage": "https://github.com/jxdp/cloudwatch-embedded-metrics",
   "repository": {

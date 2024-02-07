@@ -1,0 +1,13 @@
+{
+  "extends": ["./tsconfig.base.json"],
+  "include": ["src"],
+  "exclude": ["**/*.test.ts"],
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "outDir": "./dist",
+    "noEmit": false
+  }
+}

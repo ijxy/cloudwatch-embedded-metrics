@@ -1,0 +1,48 @@
+{
+  "name": "cloudwatch-embedded-metrics",
+  "version": "0.1.0",
+  "description": "CloudWatch embedded metric format (EMF) formatting utils",
+  "homepage": "https://github.com/jxdp/cloudwatch-embedded-metrics",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jxdp/cloudwatch-embedded-metrics.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jxdp/cloudwatch-embedded-metrics/issues"
+  },
+  "keywords": [
+    "aws",
+    "cloudwatch",
+    "embedded metric format",
+    "emf",
+    "metrics"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "lint": "eslint . --ext ts,js,json --fix",
+    "prepublishOnly": "npm run lint && npm run build && npm run test",
+    "test": "NODE_ENV=test node --import tsx --test ./**/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.14",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "ajv": "^8.12.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

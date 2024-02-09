@@ -1,3 +1,9 @@
+[npm]: https://www.npmjs.com/package/cloudwatch-embedded-metrics
+
+[![npm verison](https://img.shields.io/npm/v/cloudwatch-embedded-metrics)][npm]
+[![npm bundle size](https://img.shields.io/bundlephobia/min/cloudwatch-embedded-metrics)][npm]
+[![npm downloads](https://img.shields.io/npm/dm/cloudwatch-embedded-metrics)][npm]
+
 # CloudWatch Embedded Metrics
 
 CloudWatch embedded metric format (EMF) is an opinionated logging format used CloudWatch to enable automatic creation of CloudWatch Metrics from log events.

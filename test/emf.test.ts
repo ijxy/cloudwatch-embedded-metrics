@@ -114,6 +114,11 @@ const schema = {
 test("emf", () => {
   const event = emf({
     namespaces: ["ns1", "ns2", "ns3"],
+    metrics: {
+      ns1: [["met1"]],
+      ns2: [["met2"]],
+      ns3: [["met1", Unit.Count, StorageResolution.High], ["met3"]],
+    },
     dimensions: {
       ns1: [["dim1"]],
       ns2: [["dim1", "dim2"]],
@@ -123,20 +128,15 @@ test("emf", () => {
         ["dim1", "dim3"],
       ],
     },
-    dimensionTargets: {
-      dim1: "FOO",
-      dim2: "BAR",
-      dim3: "BAZ",
-    },
-    metrics: {
-      ns1: [["met1"]],
-      ns2: [["met2"]],
-      ns3: [["met1", Unit.Count, StorageResolution.High], ["met3"]],
-    },
     metricTargets: {
       met1: 10,
       met2: 1,
       met3: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    },
+    dimensionTargets: {
+      dim1: "FOO",
+      dim2: "BAR",
+      dim3: "BAZ",
     },
     properties: {
       foo: "bar",
@@ -153,22 +153,27 @@ test("createMetricGenerator", () => {
 
   const event = emf({
     namespaces: ["ns"],
-    dimensions: { ns: [["dim1", "dim2"]] },
     metrics: { ns: [["met", Unit.Bits]] },
-    dimensionTargets: { dim1: "foo", dim2: "bar" },
+    dimensions: { ns: [["dim1", "dim2"]] },
     metricTargets: { met: 10 },
+    dimensionTargets: { dim1: "foo", dim2: "bar" },
     timestamp: now,
   });
 
   const generator = createMetricGenerator({
     namespaces: ["ns"],
-    dimensions: { ns: [["dim1", "dim2"]] },
     metrics: { ns: [["met", Unit.Bits]] },
+    dimensions: { ns: [["dim1", "dim2"]] },
   });
 
   const generated = generator({
-    dimensionTargets: { dim1: "foo", dim2: "bar" },
-    metricTargets: { met: 10 },
+    metricTargets: {
+      met: 10,
+    },
+    dimensionTargets: {
+      dim1: "foo",
+      dim2: "bar",
+    },
     timestamp: now,
   });
 

@@ -29,8 +29,8 @@ export type DimensionSet<D extends string> = Array<D>;
 
 export type MetricDefinition<M extends string> = {
   Name: M;
-  Unit?: Unit;
-  StorageResolution?: StorageResolution;
+  Unit: Unit | undefined;
+  StorageResolution: StorageResolution | undefined;
 };
 
 export type MetricDefinitionInput<M extends string> = [
@@ -86,50 +86,23 @@ export type EmbeddedMetricFormatterInput<
   D extends string = string,
   M extends string = string,
 > = {
-  /**
-   * Namespaces to create metrics in
-   */
   namespaces: Array<N>;
-
-  /**
-   * Defines the dimension-sets for each namespace
-   */
-  dimensions: Record<N, Array<DimensionSet<D>>>;
-
-  /**
-   * The values for all dimensions
-   */
-  dimensionTargets: DimensionTargets<D>;
-
-  /**
-   * The metrics to added to the dimension-sets for each namespace
-   */
   metrics: Record<N, Array<MetricDefinitionInput<M>>>;
-
-  /**
-   * The values for all metrics
-   */
+  dimensions: Record<N, Array<DimensionSet<D>>>;
   metricTargets: MetricTargets<M>;
-
-  /**
-   * Additional properties to add to the event
-   */
-  properties?: Record<string, unknown>;
-
-  /**
-   * An optional override for the timestamp
-   */
+  dimensionTargets: DimensionTargets<D>;
   timestamp?: Date;
+  properties?: Record<string, unknown>;
 };
 
 export function emf<N extends string, D extends string, M extends string>({
   namespaces,
-  dimensions,
-  dimensionTargets,
   metrics,
+  dimensions,
   metricTargets,
-  properties,
+  dimensionTargets,
   timestamp,
+  properties,
 }: EmbeddedMetricFormatterInput<N, D, M>): EmbeddedMetricFormatEvent<N, D, M> {
   return {
     ...properties,
@@ -137,13 +110,13 @@ export function emf<N extends string, D extends string, M extends string>({
     ...metricTargets,
     _aws: {
       Timestamp: timestamp?.getTime() ?? Date.now(),
-      CloudWatchMetrics: namespaces.map<MetricDirective<N, D, M>>((ns) => ({
-        Namespace: ns,
-        Dimensions: dimensions[ns],
-        Metrics: metrics[ns].map<MetricDefinition<M>>(([n, u, s]) => ({
-          Name: n,
-          Unit: u,
-          StorageResolution: s,
+      CloudWatchMetrics: namespaces.map((namespace) => ({
+        Namespace: namespace,
+        Dimensions: dimensions[namespace],
+        Metrics: metrics[namespace].map((metric) => ({
+          Name: metric[0],
+          Unit: metric[1],
+          StorageResolution: metric[2],
         })),
       })),
     },
@@ -156,7 +129,7 @@ export type CreateMetricGeneratorInput<
   M extends string,
 > = Pick<
   EmbeddedMetricFormatterInput<N, D, M>,
-  "namespaces" | "dimensions" | "metrics" | "properties"
+  "namespaces" | "metrics" | "dimensions" | "properties"
 >;
 
 export type MetricGeneratorInput<
@@ -165,7 +138,7 @@ export type MetricGeneratorInput<
   M extends string,
 > = Pick<
   EmbeddedMetricFormatterInput<N, D, M>,
-  "dimensionTargets" | "metricTargets" | "properties" | "timestamp"
+  "metricTargets" | "dimensionTargets" | "timestamp" | "properties"
 >;
 
 export type MetricGenerator<
@@ -182,19 +155,19 @@ export function createMetricGenerator<
   M extends string,
 >({
   namespaces,
-  dimensions,
   metrics,
+  dimensions,
   properties: defaultProperties,
 }: CreateMetricGeneratorInput<N, D, M>): MetricGenerator<N, D, M> {
   return ({ dimensionTargets, metricTargets, properties, timestamp }) => {
     return emf({
       namespaces,
-      dimensions,
       metrics,
-      dimensionTargets,
+      dimensions,
       metricTargets,
-      properties: { ...defaultProperties, ...properties },
+      dimensionTargets,
       timestamp,
+      properties: { ...defaultProperties, ...properties },
     });
   };
 }

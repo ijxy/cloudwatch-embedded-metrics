@@ -9,17 +9,22 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:import/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/stylistic",
     "plugin:@typescript-eslint/strict",
+    "plugin:import/recommended",
     "plugin:import/typescript",
     "plugin:prettier/recommended",
   ],
   rules: {
-    curly: ["error", "all"],
-    "no-extra-boolean-cast": ["off"],
+    curly: ["error"],
     "sort-imports": ["error", { ignoreDeclarationSort: true }],
+
+    "@typescript-eslint/array-type": ["error", { default: "generic" }],
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/method-signature-style": ["error"],
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/prefer-enum-initializers": ["error"],
 
     "import/newline-after-import": ["error"],
     "import/no-anonymous-default-export": ["error"],
@@ -37,11 +42,5 @@ module.exports = {
         "newlines-between": "always",
       },
     ],
-
-    "@typescript-eslint/array-type": ["error", { default: "generic" }],
-    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-    "@typescript-eslint/method-signature-style": ["error"],
-    "@typescript-eslint/no-unused-vars": ["error"],
-    "@typescript-eslint/prefer-enum-initializers": ["error"],
   },
 };

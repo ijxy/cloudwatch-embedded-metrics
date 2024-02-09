@@ -2,22 +2,26 @@
   "name": "cloudwatch-embedded-metrics",
   "version": "1.0.0",
   "description": "CloudWatch embedded metric format (EMF) formatting utils",
-  "homepage": "https://github.com/jxdp/cloudwatch-embedded-metrics",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jxdp/cloudwatch-embedded-metrics.git"
-  },
-  "bugs": {
-    "url": "https://github.com/jxdp/cloudwatch-embedded-metrics/issues"
-  },
   "keywords": [
     "aws",
     "cloudwatch",
     "embedded metric format",
     "emf",
-    "metrics"
+    "metric"
   ],
+  "homepage": "https://github.com/jxdp/cloudwatch-embedded-metrics",
+  "bugs": {
+    "url": "https://github.com/jxdp/cloudwatch-embedded-metrics/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jxdp/cloudwatch-embedded-metrics.git"
+  },
   "license": "MIT",
+  "author": {
+    "name": "jxdp",
+    "url": "https://github.com/jxdp"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -27,7 +31,7 @@
     "build": "tsc --project tsconfig.build.json",
     "lint": "eslint . --ext ts,js,json --fix",
     "prepublishOnly": "npm run lint && npm run build && npm run test",
-    "test": "NODE_ENV=test node --import tsx --test ./**/*.test.ts"
+    "test": "NODE_ENV=test node --import tsx --test **/*.test.ts"
   },
   "devDependencies": {
     "@types/node": "^18.19.14",

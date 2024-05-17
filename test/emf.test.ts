@@ -167,6 +167,7 @@ test("createMetricGenerator", () => {
   });
 
   const generated = generator({
+    timestamp: now,
     metricTargets: {
       met: 10,
     },
@@ -174,7 +175,6 @@ test("createMetricGenerator", () => {
       dim1: "foo",
       dim2: "bar",
     },
-    timestamp: now,
   });
 
   assert.deepStrictEqual(event, generated);

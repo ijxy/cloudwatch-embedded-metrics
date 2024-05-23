@@ -1,6 +1,6 @@
 {
   "name": "cloudwatch-embedded-metrics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CloudWatch embedded metric format (EMF) formatting utils",
   "keywords": [
     "aws",

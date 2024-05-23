@@ -35,12 +35,13 @@
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.6",
-    "@types/node": "^18.19.14",
+    "@tsconfig/strictest": "^2.0.5",
+    "@types/node": "^18",
     "ajv": "^8.12.0",
-    "eslint": "^8.57.0",
-    "eslint-config-tip": "^1.0.0",
-    "tsx": "^4.7.0",
-    "typescript": "^5.3.3"
+    "eslint": "^8",
+    "eslint-config-tip": "^1",
+    "tsx": "^4",
+    "typescript": "^5"
   },
   "engines": {
     "node": ">=18"

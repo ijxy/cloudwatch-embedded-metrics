@@ -1,4 +1,7 @@
 {
-  "extends": ["./tsconfig.base.json"],
-  "include": ["src", "test"]
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "include": ["src", "test"],
+  "compilerOptions": {
+    "noEmit": true
+  },
 }

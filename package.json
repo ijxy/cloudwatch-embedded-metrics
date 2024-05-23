@@ -34,6 +34,7 @@
     "test": "NODE_ENV=test node --import tsx --test **/*.test.ts"
   },
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.6",
     "@types/node": "^18.19.14",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",

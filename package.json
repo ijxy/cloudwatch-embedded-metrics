@@ -9,18 +9,18 @@
     "emf",
     "metric"
   ],
-  "homepage": "https://github.com/jxdp/cloudwatch-embedded-metrics",
+  "homepage": "https://github.com/ijxy/cloudwatch-embedded-metrics",
   "bugs": {
-    "url": "https://github.com/jxdp/cloudwatch-embedded-metrics/issues"
+    "url": "https://github.com/ijxy/cloudwatch-embedded-metrics/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jxdp/cloudwatch-embedded-metrics.git"
+    "url": "git+https://github.com/ijxy/cloudwatch-embedded-metrics.git"
   },
   "license": "MIT",
   "author": {
-    "name": "jxdp",
-    "url": "https://github.com/jxdp"
+    "name": "ijxy",
+    "url": "https://github.com/ijxy"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
